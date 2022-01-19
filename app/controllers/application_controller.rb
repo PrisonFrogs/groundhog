@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::API
-  def sth; end
+  def sth
+    "hello"
+  end
 end
