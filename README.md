@@ -15,17 +15,19 @@
 端口:
 
 ```text
-  app: 9000
-  mysql: 9306
-  redis: 9379
+app: 9000
+mysql: 9306
+redis: 9379
 ```
 
 本地app地址: `localhost:9000`
 
 ## Commands
 
-```build项目(首次运行需要)
-  docker-compose build && docker-compose run --rm groundhog_app bundle install
+build项目(首次运行需要)
+
+```shell
+docker-compose build && docker-compose run --rm groundhog_app bundle install
 ```
 
 创建Docker内的数据库(首次运行需要)
