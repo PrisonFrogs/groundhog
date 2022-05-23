@@ -8,7 +8,7 @@
 
 ## System dependencies
 
-本项目开发环境已经设置好了Docker Compose，所以不需要大部分系统依赖，但是需要先按照[这里](https://github.com/PrisonFrogs/docs/blob/master/RUBOCOP.md)安装好ruby版本，方便本地bundle和rails。详情看Commands指引。
+本项目开发环境已经设置好了Docker Compose，所以不需要任何系统依赖。详情看Commands指引。
 
 ## Docker
 
@@ -25,12 +25,6 @@ redis: 9379
 本地app地址: `localhost:9000`
 
 ## Commands
-
-本地bundle(需要先安装好)
-
-```shell
-bundle install
-```
 
 build项目(首次运行需要)
 
