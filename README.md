@@ -53,3 +53,24 @@ docker-compose build && docker-compose up
 ```shell
 docker-compose run groundhog_app rails <command>
 ```
+
+## Workflow
+
+为了方便合作开发，请按照以下流程进行开发：
+
+1.要开发新功能，从master分支切出feature分支
+
+```shell
+git checkout -b feature/some-features
+```
+
+2.提交代码到feature分支
+
+```shell
+git add . && git commit -m 'some messages'
+git push origin feature/some-features
+```
+
+3.到github页面中创建pull request, assign给另外一个成员进行review(等待github action的pipeline通过)
+
+4.当review完成后，合并代码到master分支
