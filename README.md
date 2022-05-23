@@ -1,8 +1,10 @@
 # README
 
-## Ruby version
+## Standard
 
-3.1.0
+项目设置了Rubocop作为Linter, 所以提交的代码如果不按照规范将通过不了github action, 规则在[.rubocop.yaml](.rubocop.yml)
+
+安装rubocop的详细步骤请看[这里](https://github.com/PrisonFrogs/docs/blob/master/RUBOCOP.md)
 
 ## System dependencies
 
