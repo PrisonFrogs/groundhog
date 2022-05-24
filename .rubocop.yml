@@ -1,5 +1,9 @@
 require: rubocop-rails
 
+AllCops:
+  Exclude:
+    - 'test/**/*'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/AbcSize:
