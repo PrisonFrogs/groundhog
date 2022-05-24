@@ -1,5 +1,9 @@
 # README
 
+## Windows下开发环境的设置
+
+详情请看[WSL与docker的安装教程](https://github.com/PrisonFrogs/docs/blob/master/DOCKER-COMPOSE.md)
+
 ## Standard
 
 项目设置了Rubocop作为Linter, 所以提交的代码如果不按照规范将通过不了github action, 规则在[.rubocop.yaml](.rubocop.yml)
