@@ -1,8 +1,9 @@
 {
   "ruby.lint": {
     "rubocop": {
-      "useBundler": true
+      "useBundler": false
     }
   },
   "ruby.format": "rubocop",
+  "solargraph.commandPath": "solargraph",
 }
