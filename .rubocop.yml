@@ -7,6 +7,9 @@ AllCops:
     - db/*
     - vendor/
 
+inherit_gem:
+  rubocop-discourse: default.yml
+
 Rails:
   Enabled: true
 
