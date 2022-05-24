@@ -5,6 +5,7 @@ AllCops:
     - test/**/*.rb
     - bin/*
     - db/*
+    - vendor/
 
 Style/FrozenStringLiteralComment:
   Enabled: false
