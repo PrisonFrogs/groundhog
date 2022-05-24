@@ -29,19 +29,19 @@ redis: 9379
 build项目(首次运行需要)
 
 ```shell
-docker-compose build && docker-compose run --rm groundhog_app bundle install
+docker-compose build && ./run bundle install
 ```
 
 创建Docker内的数据库(首次运行需要)
 
 ```shell
-docker-compose run groundhog_app rails db:create
+./run rails db:create
 ```
 
 运行Migration
 
 ```shell
-docker-compose run groundhog_app rails db:migrate
+./run rails db:migrate
 ```
 
 启动本项目
@@ -53,7 +53,7 @@ docker-compose build && docker-compose up
 运行Rails指令
 
 ```shell
-docker-compose run groundhog_app rails <command>
+./run rails <command>
 ```
 
 ## Workflow
