@@ -1,18 +1,5 @@
 require: rubocop-rails
 
-AllCops:
-  Exclude:
-    - test/**/*.rb
-    - bin/*
-    - db/*
-    - vendor/
-
-inherit_gem:
-  rubocop-discourse: default.yml
-
-Rails:
-  Enabled: true
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/AbcSize:
@@ -125,6 +112,16 @@ Metrics/CyclomaticComplexity:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
-
 Bundler/OrderedGems:
   Enabled: false
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    - test/**/*.rb
+    - bin/*
+    - db/*
+    - vendor/
