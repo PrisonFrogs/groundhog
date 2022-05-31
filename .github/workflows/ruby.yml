@@ -23,12 +23,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: lint
-      run: bundle exec rubocop
+
+    - name: build
+      run: docker-compose -f "docker-compose.yml" up -d --build
+
+    - name: rubocpp
+      run: docker-compose run --rm groundhog_app bundle exec rubocop
+    
     - name: rspec
-      run: bundle exec rspec
+      run: docker-compose run --rm groundhog_app bundle exec rspec
