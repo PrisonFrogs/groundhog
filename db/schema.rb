@@ -10,6 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2022_05_24_072658) do
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "nickname", null: false
+    t.string "password_digest", null: false
+    t.string "bio"
+    t.integer "gender", default: 0
+    t.integer "age"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
