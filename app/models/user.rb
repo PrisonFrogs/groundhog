@@ -8,4 +8,16 @@ class User < ApplicationRecord
     male: 1,
     female: 2
   }
+
+  def to_token
+    JsonWebToken.encode({
+                          id:,
+                          email:,
+                          gender:
+                        })
+  end
+
+  def authenticated?(password)
+    BCrypt::Password.new(password_digest).is_password?(password)
+  end
 end
