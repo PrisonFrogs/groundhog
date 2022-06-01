@@ -15,7 +15,7 @@ module Middleware
           env['current_user'] = User.find(@decoded[:id])
           return @app.call(env)
         rescue ActiveRecord::RecordNotFound, JWT::DecodeError
-          response = [get_error('unauthroize', status: 403)]
+          response = [get_error('invalid session', status: 403)]
           status = 403
         end
       end
