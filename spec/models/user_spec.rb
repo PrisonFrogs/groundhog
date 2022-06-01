@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   it 'is valid with valid user' do
     expect(User.new(email: 'test@test.com',
                     nickname: 'Joey',
-                    password_digest: 'pwd123123',
+                    password: 'pwd123123',
                     bio: 'I am the king',
                     gender: 2,
                     age: 22,
