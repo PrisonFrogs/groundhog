@@ -22,8 +22,8 @@ module Api
     def destroy; end
 
     def like
-      @post.liked_by current_user
-      render_payload(post: @post)
+      result = @post.liked_by current_user
+      render_payload(result:)
     end
 
     private

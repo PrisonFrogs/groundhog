@@ -17,8 +17,15 @@ RSpec.describe Post, type: :model do
     real_post = Post.find_or_create_by!(title: 'test', content: 'ooo', user: real_user)
     real_post.liked_by(real_user)
 
-    puts real_post.liked_users
-
     expect(real_post.liked_by?(real_user)).to be_truthy
+  end
+
+  it 'would be dislike if liked twice' do
+    real_user = User.find_or_create_by!(email: 'tester@groundhog.com', nickname: user.nickname)
+    real_post = Post.find_or_create_by!(title: 'test', content: 'ooo', user: real_user)
+    real_post.liked_by(real_user)
+    real_post.liked_by(real_user)
+
+    expect(real_post.liked_by?(real_user)).to be_falsey
   end
 end

@@ -22,6 +22,10 @@ class Post < ApplicationRecord
   def liked_by(user)
     like = likes.find_or_initialize_by(user:)
 
-    like.new_record? ? like.save : like.destroy
+    new_like = like.new_record?
+
+    new_like ? like.save : like.destroy
+
+    new_like
   end
 end
