@@ -1,7 +1,7 @@
 module Api
   class PostsController < ApplicationController
-    before_action :require_auth, only: %i[show destroy create]
-    before_action :set_post, only: %i[show destroy]
+    before_action :require_auth, only: %i[show destroy create like]
+    before_action :set_post, only: %i[show destroy like]
 
     def index
       @page = params[:page] || 1
@@ -20,6 +20,11 @@ module Api
     def create; end
 
     def destroy; end
+
+    def like
+      @post.liked_by current_user
+      render_payload(post: @post)
+    end
 
     private
 
