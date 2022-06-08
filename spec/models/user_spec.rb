@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is not valid without a password' do
-    expect(User.new(password_digest: nil)).to_not be_valid
+    expect(User.new(password: nil)).to_not be_valid
   end
 
   it 'is not valid with a incorrect email formate' do
