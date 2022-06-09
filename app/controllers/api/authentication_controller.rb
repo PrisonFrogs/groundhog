@@ -1,7 +1,5 @@
 module Api
   class AuthenticationController < ApplicationController
-    before_action :require_auth, only: [:refresh]
-
     def shake
       render_payload(nickname: current_user&.nickname)
     end
@@ -22,8 +20,7 @@ module Api
     def refresh
       @refresh_token = params[:refresh_token]
 
-      access_token, refresh_token, exp_at = ::Jwt::RefreshService.call(user: current_user,
-                                                                       refresh_token: @refresh_token)
+      access_token, refresh_token, exp_at = ::Jwt::RefreshService.call(@refresh_token)
 
       render_payload(access_token:, exp_at:, refresh_token:)
     end

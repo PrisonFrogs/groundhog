@@ -20,10 +20,9 @@ RSpec.describe 'Api::AuthenticationController', type: :request do
       real_user = User.find_or_initialize_by(email: user.email, nickname: user.nickname)
       real_user.update!(password: 'user.password.here')
 
-      access_token, refresh_token, = real_user.to_token
+      _, refresh_token, = real_user.to_token
 
-      headers = { 'Authorization' => "Bearer #{access_token}" }
-      post '/api/auth/refresh', params: { refresh_token: }, headers: headers
+      post '/api/auth/refresh', params: { refresh_token: }
 
       expect(response).to have_http_status(200)
     end

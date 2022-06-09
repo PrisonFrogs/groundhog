@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
   validates :email, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
 
+  has_many :liked_posts, through: :likes
   has_many :refresh_tokens, dependent: :destroy
 
   enum gender: {
