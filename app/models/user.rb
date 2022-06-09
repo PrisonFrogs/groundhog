@@ -13,7 +13,7 @@ class User < ApplicationRecord
   }
 
   def to_token
-    Jwt::IssueService.call(to_payload)
+    Jwt::IssueService.call(self)
   end
 
   def to_payload
