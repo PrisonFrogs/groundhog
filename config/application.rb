@@ -33,6 +33,7 @@ module Groundhog
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join('lib/autoloads')
     config.eager_load_paths << Rails.root.join('lib/middleware')
+    config.eager_load_paths << Rails.root.join('lib/services')
 
     config.middleware.use ::Middleware::Authenticator
 
