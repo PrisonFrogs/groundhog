@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :email, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
 
   has_many :liked_posts, through: :likes
+  has_many :refresh_tokens, dependent: :destroy
 
   enum gender: {
     secret: 0,
@@ -13,11 +14,16 @@ class User < ApplicationRecord
   }
 
   def to_token
-    JsonWebToken.encode({
-                          id:,
-                          email:,
-                          gender:
-                        })
+    Jwt::IssueService.call(self)
+  end
+
+  def to_payload
+    {
+      id:,
+      email:,
+      gender:,
+      nickname:
+    }
   end
 
   def authenticated?(password)

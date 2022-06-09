@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2022_06_08_064313) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "refresh_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "crypted_token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["crypted_token"], name: "index_refresh_tokens_on_crypted_token"
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "nickname", null: false
@@ -48,4 +57,5 @@ ActiveRecord::Schema.define(version: 2022_06_08_064313) do
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "refresh_tokens", "users"
 end

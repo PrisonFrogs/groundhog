@@ -22,7 +22,8 @@ RSpec.describe 'Api::PostsController', type: :request do
       real_user = User.find_or_initialize_by(email: user.email, nickname: user.nickname)
       real_user.update!(password: 'user.password.here')
 
-      headers['Authorization'] = "Bearer #{real_user.to_token}"
+      access_token, = real_user.to_token
+      headers['Authorization'] = "Bearer #{access_token}"
 
       get "/api/posts/#{post.id}", params: nil, headers: headers
 
