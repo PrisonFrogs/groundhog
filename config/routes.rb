@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     post '/auth/login', to: 'authentication#login'
     post '/auth/refresh', to: 'authentication#refresh'
 
-    resources :posts
+    resources :posts do
+      member do
+        put :like
+      end
+    end
   end
 end
