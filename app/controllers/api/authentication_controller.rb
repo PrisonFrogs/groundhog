@@ -5,7 +5,7 @@ module Api
     end
 
     def login
-      email = params[:login]
+      email = params[:email]
       password = params[:passw]
 
       @user = User.find_by(email:)

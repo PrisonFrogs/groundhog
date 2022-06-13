@@ -1,5 +1,7 @@
 module Api
   class PostsController < ApplicationController
+    include PostsConcern
+
     before_action :require_auth, only: %i[show destroy create like]
     before_action :set_post, only: %i[show destroy like]
 
@@ -10,7 +12,7 @@ module Api
       @posts = Post.list_on_homepage.page(@page).per(@per_page)
       @total = @posts.total_count
 
-      render_payload(posts: @posts, total: @total)
+      render_payload(posts: posts_payload(@posts), total: @total)
     end
 
     def show
@@ -23,7 +25,7 @@ module Api
 
     def like
       result = @post.liked_by current_user
-      render_payload(result:)
+      render_payload(result:, post: posts_payload(@post))
     end
 
     private

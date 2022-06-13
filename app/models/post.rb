@@ -28,4 +28,8 @@ class Post < ApplicationRecord
 
     new_like
   end
+
+  def likes_count
+    likes.size
+  end
 end
