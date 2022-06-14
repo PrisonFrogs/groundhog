@@ -16,7 +16,7 @@ module Api
     end
 
     def show
-      render_payload(post: @post)
+      render_payload(post: posts_payload(@post))
     end
 
     def create; end

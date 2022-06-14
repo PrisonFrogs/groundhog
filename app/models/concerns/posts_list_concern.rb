@@ -8,6 +8,7 @@ module PostsListConcern
       {
         id:,
         title:,
+        content:,
         author_nickname:,
         likes_count:,
         liked_by_current_user: user ? liked_by?(user) : false
