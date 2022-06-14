@@ -7,6 +7,15 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes
   has_many :refresh_tokens, dependent: :destroy
 
+  # fans
+  has_many :fan_subscriptions, class_name: 'Subscription', dependent: :destroy
+  has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber, dependent: nil,
+                         inverse_of: :fan_subscriptions
+
+  # subscriptions
+  has_many :subscriptions, dependent: :destroy, foreign_key: :subscriber_id, inverse_of: :subscriber
+  has_many :subscribed_to, through: :subscriptions, source: :user, dependent: nil
+
   enum gender: {
     secret: 0,
     male: 1,
@@ -28,5 +37,17 @@ class User < ApplicationRecord
 
   def authenticated?(password)
     BCrypt::Password.new(password_digest).is_password?(password)
+  end
+
+  def subscribe(user)
+    subscriptions.create(user:)
+  end
+
+  def unsubscribe(user)
+    subscriptions.find_by(user:).destroy
+  end
+
+  def subscribe!(user)
+    subscriptions.create!(user:)
   end
 end

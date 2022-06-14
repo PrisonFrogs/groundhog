@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_030857) do
+ActiveRecord::Schema.define(version: 2022_06_14_041448) do
 
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2022_06_09_030857) do
     t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
   end
 
+  create_table "subscriptions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subscriber_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "subscriber_id"], name: "index_subscriptions_on_user_id_and_subscriber_id", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "nickname", null: false
@@ -58,4 +67,5 @@ ActiveRecord::Schema.define(version: 2022_06_09_030857) do
 
   add_foreign_key "posts", "users"
   add_foreign_key "refresh_tokens", "users"
+  add_foreign_key "subscriptions", "users"
 end
