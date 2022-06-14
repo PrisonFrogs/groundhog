@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
   # fans
   has_many :fan_subscriptions, class_name: 'Subscription', dependent: :destroy
-  has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber, dependent: nil
+  has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber, dependent: nil,
+                         inverse_of: :fan_subscriptions
 
   # subscriptions
   has_many :subscriptions, dependent: :destroy, foreign_key: :subscriber_id
