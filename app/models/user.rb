@@ -13,7 +13,7 @@ class User < ApplicationRecord
                          inverse_of: :fan_subscriptions
 
   # subscriptions
-  has_many :subscriptions, dependent: :destroy, foreign_key: :subscriber_id
+  has_many :subscriptions, dependent: :destroy, foreign_key: :subscriber_id, inverse_of: :subscriber
   has_many :subscribed_to, through: :subscriptions, source: :user, dependent: nil
 
   enum gender: {
