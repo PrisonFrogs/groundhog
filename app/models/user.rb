@@ -9,11 +9,11 @@ class User < ApplicationRecord
 
   # fans
   has_many :fan_subscriptions, class_name: 'Subscription', dependent: :destroy
-  has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber
+  has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber, dependent: nil
 
   # subscriptions
   has_many :subscriptions, dependent: :destroy, foreign_key: :subscriber_id
-  has_many :subscribed_to, through: :subscriptions, source: :user
+  has_many :subscribed_to, through: :subscriptions, source: :user, dependent: nil
 
   enum gender: {
     secret: 0,
