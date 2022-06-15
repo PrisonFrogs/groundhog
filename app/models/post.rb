@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   belongs_to :post, optional: true
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :comments, class_name: 'Post', dependent: :destroy
 
   validates :content, :user, presence: true
 
