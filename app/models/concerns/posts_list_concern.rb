@@ -3,7 +3,7 @@ module PostsListConcern
 
   included do
     scope :list_on_homepage, lambda {
-                               where('created_at > ?', Post.last.created_at - 3.days)
+                               where('created_at > ?', Post.last ? Post.last.created_at - 3.days : 3.days.ago)
                                  .where.not(title: nil)
                                  .order(updated_at: :desc)
                              }
