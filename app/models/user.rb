@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes
   has_many :refresh_tokens, dependent: :destroy
 
+  has_many :posts, dependent: :destroy
+
   # fans
   has_many :fan_subscriptions, class_name: 'Subscription', dependent: :destroy
   has_many :subscribers, through: :fan_subscriptions, class_name: 'User', source: :subscriber, dependent: nil,

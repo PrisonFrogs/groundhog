@@ -16,10 +16,22 @@ module Api
     end
 
     def show
-      render_payload(post: posts_payload(@post))
+      @page = params[:page] || 1
+      @per_page = params[:per_page] || 10
+
+      @comments = @post.comments.order(created_at: :desc).page(@page).per(@per_page)
+      @comments_count = @comments.total_count
+
+      render_payload(post: posts_payload(@post), comments: posts_payload(@comments), comments_count: @comments_count)
     end
 
-    def create; end
+    def create
+      @post = current_user.posts.new(post_params)
+
+      @post.save!
+
+      render_payload(post: posts_payload(@post))
+    end
 
     def destroy; end
 
@@ -32,6 +44,10 @@ module Api
 
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def post_params
+      params.require(:post).permit(:title, :content, :post_id)
     end
   end
 end

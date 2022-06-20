@@ -2,7 +2,11 @@ module PostsListConcern
   extend ActiveSupport::Concern
 
   included do
-    scope :list_on_homepage, -> { where('created_at > ?', 3.days.ago).order(updated_at: :desc) }
+    scope :list_on_homepage, lambda {
+                               where('created_at > ?', Post.last ? Post.last.created_at - 3.days : 3.days.ago)
+                                 .where.not(title: nil)
+                                 .order(updated_at: :desc)
+                             }
 
     def as_payload(user = nil)
       {
